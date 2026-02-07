@@ -1,7 +1,7 @@
 import socket
 import threading
 
-host = '172.0.0.1' #localhost
+host = '127.0.0.1' #localhost
 port = 55555
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,7 +16,7 @@ def broadcast(message):
         client.send(message)
 
 def handle(client):
-    while true:
+    while True:
         try:
             message = client.recv(1024)
             broadcast(message)
@@ -44,3 +44,6 @@ def receive():
 
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
+
+print('Server is listening...')
+receive()
